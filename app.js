@@ -2,16 +2,22 @@
 const btn = document.getElementById('toggle-ambient');
 const storageKey = 'ambient-anim-enabled';
 
+function renderButton(enabled){
+  btn.innerHTML = enabled
+    ? "▶️ Animación: <strong>ACTIVA</strong>"
+    : "🛑 Animación: <strong>PAUSADA</strong>";
+}
 function setAmbientAnim(enabled){
-  document.body.style.animationPlayState = enabled ? 'running' : 'paused';
+  document.body.classList.toggle('paused', !enabled);
   btn.setAttribute('aria-pressed', String(!enabled));
-  btn.querySelector('span').textContent = enabled ? 'ON' : 'OFF';
+  renderButton(enabled);
 }
 
 // Estado inicial guardado
 const saved = localStorage.getItem(storageKey);
 const startEnabled = saved === null ? true : saved === '1';
 setAmbientAnim(startEnabled);
+renderButton(startEnabled);
 
 btn.addEventListener('click', () =>{
   const isRunning = document.body.style.animationPlayState !== 'paused';
