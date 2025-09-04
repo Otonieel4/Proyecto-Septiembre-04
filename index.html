@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mi primera página – Estilo medieval</title>
-  <!-- Tipografías con aire medieval -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
-  <!-- Hoja de estilos separada -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,6 +17,17 @@
     <div class="layer clouds fast"></div>
     <div class="layer mountains"></div>
     <div class="layer village"></div>
+
+    <!-- Faroles/ventanas (titilan de noche) -->
+    <div class="layer lanterns l1"></div>
+    <div class="layer lanterns l2"></div>
+    <div class="layer lanterns l3"></div>
+
+    <!-- Pajaritos al amanecer -->
+    <div class="layer birds">
+      <span class="bird b1"></span>
+      <span class="bird b2"></span>
+    </div>
   </div>
 
   <div class="wrap">
@@ -29,7 +38,9 @@
     </div>
 
     <div class="controls">
-      <button class="btn" id="toggle-ambient" aria-pressed="false">▶️ Animación: <strong>ACTIVA</strong></button>
+      <button class="btn" id="toggle-ambient" aria-pressed="false">
+        ▶️ Animación: <strong>ACTIVA</strong>
+      </button>
     </div>
 
     <!-- HOBBIES -->
@@ -38,27 +49,19 @@
       <div class="grid">
         <article class="card">
           <img src="https://www.consumer.es/app/uploads/2025/04/trucos-cocinar-wok.jpg" alt="El estudiante tiene como Hobbie Cocinar">
-          <div class="content">
-            <h3>Cocinar</h3>
-          </div>
+          <div class="content"><h3>Cocinar</h3></div>
         </article>
         <article class="card">
           <img src="https://i.blogs.es/c28a63/faker-lol/1366_2000.jpeg" alt="Imagen de videojuegos para ejemplo sobre mis Hobbies">
-          <div class="content">
-            <h3>Jugar videojuegos</h3>
-          </div>
+          <div class="content"><h3>Jugar videojuegos</h3></div>
         </article>
         <article class="card">
           <img src="https://imagenes.elpais.com/resizer/v2/PEFYC6MRABANDB25N3UTREJ6BQ.jpg?auth=dc9923c75fc93a8c98c723317f9ee74f1399e3b3983eed96acd0741d1d61e599&width=414" alt="El estudiante tiene como Hobbie leer cómics">
-          <div class="content">
-            <h3>Leer cómics</h3>
-          </div>
+          <div class="content"><h3>Leer cómics</h3></div>
         </article>
         <article class="card">
           <img src="https://s1.elespanol.com/2019/09/13/ciencia/salud/enfermedades_mentales-series-netflix_428967390_134387732_1706x960.jpg" alt="El estudiante tiene como Hobbie Ver Series">
-          <div class="content">
-            <h3>Ver series</h3>
-          </div>
+          <div class="content"><h3>Ver series</h3></div>
         </article>
       </div>
     </section>
@@ -180,7 +183,6 @@
     </footer>
   </div>
 
-  <!-- Script separado -->
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

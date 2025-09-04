@@ -8,26 +8,23 @@
 }
 
 :root{
-  --hue: 35;              /* color base (dorado) */
-  --ink: #2b1b12;         /* tinta oscura */
-  --paper: #f3e7cf;       /* pergamino */
-  --paper-edge: #e5d6b8;  /* borde del pergamino */
+  --hue: 35;
+  --ink: #2b1b12;
+  --paper: #f3e7cf;
+  --paper-edge: #e5d6b8;
   --maxw: 1100px;
 }
 
 html, body { height: 100%; }
 body{
-  margin:0;
-  color: var(--ink);
+  margin:0; color: var(--ink);
   font-family: 'Cinzel', serif;
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       hsl(var(--hue) 60% 92%) 0%,
       hsl(calc(var(--hue) + 40) 50% 85%) 28%,
       hsl(calc(var(--hue) + 80) 45% 78%) 55%,
-      hsl(calc(var(--hue) + 140) 35% 12%) 100%
-    );
+      hsl(calc(var(--hue) + 140) 35% 12%) 100%);
   animation: skyShift 36s linear infinite;
   background-attachment: fixed;
 }
@@ -47,107 +44,72 @@ body::before{
   100% { --hue: 35; }
 }
 
-/* ====================
-   LAYOUT
-   ==================== */
+/* Layout */
 .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 28px 20px 60px; }
 
-/* Estandarte superior */
+/* Estandarte */
 .banner{
-  position: relative;
+  position: relative; text-align: center; color: #3a2615;
   font-family: 'MedievalSharp', cursive;
-  text-align: center;
-  color: #3a2615;
-  padding: 20px 16px 26px;
-  margin: 16px auto 28px;
-  border: 4px solid #5b3a1b;
-  border-radius: 12px;
-  background:
-    linear-gradient(180deg, var(--paper) 0%, var(--paper-edge) 100%);
-  box-shadow:
-    0 10px 24px rgba(0,0,0,.25),
-    inset 0 1px 0 rgba(255,255,255,.45),
-    inset 0 -2px 0 rgba(0,0,0,.08);
+  padding: 20px 16px 26px; margin: 16px auto 28px;
+  border: 4px solid #5b3a1b; border-radius: 12px;
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-edge) 100%);
+  box-shadow: 0 10px 24px rgba(0,0,0,.25),
+              inset 0 1px 0 rgba(255,255,255,.45),
+              inset 0 -2px 0 rgba(0,0,0,.08);
   overflow: hidden;
 }
-
-/* Cintas laterales */
-.banner::before,
-.banner::after{
+.banner::before,.banner::after{
   content:""; position:absolute; top:0; bottom:0; width:12px;
-  background: linear-gradient(
-    180deg,
+  background: linear-gradient(180deg,
     hsl(calc(var(--hue) + 20) 60% 55%),
-    hsl(calc(var(--hue) + 60) 60% 40%)
-  );
+    hsl(calc(var(--hue) + 60) 60% 40%));
   animation: ribbonShift 10s ease-in-out infinite alternate;
   filter: saturate(1.1);
 }
 .banner::before{ left:-4px; border-right:2px solid rgba(0,0,0,.15); }
 .banner::after{ right:-4px; border-left:2px solid rgba(0,0,0,.15); }
-@keyframes ribbonShift{
-  0%{ filter:hue-rotate(0deg); opacity:.75; }
-  100%{ filter:hue-rotate(50deg); opacity:1; }
-}
-
+@keyframes ribbonShift{ 0%{filter:hue-rotate(0deg);opacity:.75;} 100%{filter:hue-rotate(50deg);opacity:1;} }
 .banner h1{ margin:0 0 6px; font-size: clamp(28px, 4vw, 44px); letter-spacing:.5px; }
 .banner p{ margin:4px 0; font-size: clamp(14px, 2.2vw, 18px); }
 
-/* Secciones en pergamino */
+/* Secciones */
 .section{
-  position: relative;
-  margin: 28px 0; padding: 18px 16px 10px;
+  position: relative; margin: 28px 0; padding: 18px 16px 10px;
   border: 3px solid #5b3a1b; border-radius: 14px;
   background: linear-gradient(180deg, var(--paper) 0%, var(--paper-edge) 100%);
-  box-shadow:
-    0 6px 18px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.5),
-    inset 0 -1px 0 rgba(0,0,0,.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18),
+              inset 0 1px 0 rgba(255,255,255,.5),
+              inset 0 -1px 0 rgba(0,0,0,.06);
 }
 .section::before{
   content:""; position:absolute; inset:0; z-index:0; border-radius: 10px;
   background:
-    radial-gradient( 150% 60% at 10% 0%, hsl(calc(var(--hue) + 15) 35% 90% / .45), transparent 60%),
-    radial-gradient( 120% 70% at 100% 100%, hsl(calc(var(--hue) + 120) 30% 70% / .22), transparent 60%);
+    radial-gradient(150% 60% at 10% 0%, hsl(calc(var(--hue) + 15) 35% 90% / .45), transparent 60%),
+    radial-gradient(120% 70% at 100% 100%, hsl(calc(var(--hue) + 120) 30% 70% / .22), transparent 60%);
   mix-blend-mode: multiply; pointer-events:none;
   animation: tapestry 20s linear infinite;
 }
-@keyframes tapestry{
-  0%{ opacity:.65; filter:hue-rotate(0deg) saturate(1); }
-  50%{ opacity:.85; filter:hue-rotate(45deg) saturate(1.05); }
-  100%{ opacity:.65; filter:hue-rotate(0deg) saturate(1); }
-}
-
+@keyframes tapestry{ 0%{opacity:.65;filter:hue-rotate(0) saturate(1);} 50%{opacity:.85;filter:hue-rotate(45deg) saturate(1.05);} 100%{opacity:.65;filter:hue-rotate(0) saturate(1);} }
 .section h2{
-  font-family: 'MedievalSharp', cursive;
-  font-size: clamp(20px, 3vw, 28px);
-  margin: 0 0 14px;
-  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'MedievalSharp', cursive; font-size: clamp(20px, 3vw, 28px);
+  margin: 0 0 14px; display: inline-flex; align-items: center; gap: 10px;
 }
-.section h2::before{
-  content:"❖"; font-size: 1.2em; color: hsl(calc(var(--hue) + 10) 45% 30%);
-  text-shadow: 0 1px 0 #fff; opacity:.95;
-  animation: jewel 5s ease-in-out infinite;
-}
-@keyframes jewel{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-2px) } }
+.section h2::before{ content:"❖"; font-size:1.2em; color:hsl(calc(var(--hue)+10) 45% 30%); text-shadow:0 1px 0 #fff; opacity:.95; animation: jewel 5s ease-in-out infinite; }
+@keyframes jewel{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-2px)} }
 
-/* Rejilla de tarjetas */
-.grid{ display: grid; gap: 16px; z-index:1; position: relative; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.card{
-  background: #fffaf1;
-  border: 2px solid #7b5228; border-radius: 12px; overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0,0,0,.15);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.card:hover{ transform: translateY(-4px); box-shadow: 0 14px 24px rgba(0,0,0,.22); }
-.card img{ width:100%; height: 180px; object-fit: cover; display:block; /* cursor se hereda (fresa) */ }
-.card .content{ padding: 10px 12px 14px; }
-.card h3{ margin: 6px 0 6px; font-size: 18px; }
-.card p{ margin: 0; font-size: 14px; line-height: 1.35; }
+/* Tarjetas */
+.grid{ display:grid; gap:16px; position:relative; z-index:1; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+.card{ background:#fffaf1; border:2px solid #7b5228; border-radius:12px; overflow:hidden; box-shadow:0 8px 16px rgba(0,0,0,.15); transition:transform .25s ease, box-shadow .25s ease; }
+.card:hover{ transform:translateY(-4px); box-shadow:0 14px 24px rgba(0,0,0,.22); }
+.card img{ width:100%; height:180px; object-fit:cover; display:block; cursor:pointer; }
+.card .content{ padding:10px 12px 14px; }
+.card h3{ margin:6px 0 6px; font-size:18px; }
+.card p{ margin:0; font-size:14px; line-height:1.35; }
 
 /* Pie */
 footer{
-  margin-top: 28px; padding: 14px; text-align:center; color:#4d3824; font-size: 12px;
+  margin-top: 28px; padding: 14px; text-align:center; color:#4d3824; font-size:12px;
   background:
     radial-gradient(circle at 8% 30%, rgba(0,0,0,.08) 2px, transparent 3px) 0 0/22px 22px,
     radial-gradient(circle at 28% 60%, rgba(0,0,0,.08) 2px, transparent 3px) 10px 10px/22px 22px,
@@ -158,8 +120,7 @@ footer{
 /* Botón */
 .controls{ position: sticky; top: 8px; display: flex; justify-content: end; margin: 6px 0 14px; }
 .btn{
-  -webkit-tap-highlight-color: transparent;
-  cursor: pointer; user-select:none;
+  -webkit-tap-highlight-color: transparent; cursor: pointer; user-select:none;
   padding: 8px 12px; border-radius: 999px; border:2px solid #5b3a1b;
   background: linear-gradient(180deg, #fffbf2, #f3e1bc);
   box-shadow: 0 2px 0 rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.7);
@@ -171,10 +132,7 @@ footer{
 /* Utilidades */
 .center{ text-align: center; }
 
-/* ====================
-   CURSOR PERSONALIZADO – FRESA
-   ==================== */
-/* Hotspot aproximado en (6,2) para que "puntee" con la hoja. */
+/* Cursor fresa */
 body{
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><g><path d='M16 9c-4.2 0-7.5 3.3-7.5 7.5 0 6 6.2 9.8 7.4 10 1.2-.2 7.4-4 7.4-10C23.3 12.3 20.2 9 16 9z' fill='%23e53935' stroke='%23b71c1c' stroke-width='1'/><path d='M11 8c2 0 3 .5 5 .5s3.1-.5 5-.5c-2.1 1.3-3.1 2.7-5 3.2-2-.5-3-1.9-5-3.2z' fill='%234caf50' stroke='%232e7d32' stroke-width='1'/><circle cx='14' cy='16' r='1' fill='%23ffd54f'/><circle cx='18' cy='18' r='1' fill='%23ffd54f'/><circle cx='16' cy='21' r='1' fill='%23ffd54f'/><circle cx='19' cy='14' r='1' fill='%23ffd54f'/><circle cx='13' cy='19' r='1' fill='%23ffd54f'/></g></svg>") 6 2, auto;
 }
@@ -182,62 +140,35 @@ a, button, .btn{
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><g><path d='M16 9c-4.2 0-7.5 3.3-7.5 7.5 0 6 6.2 9.8 7.4 10 1.2-.2 7.4-4 7.4-10C23.3 12.3 20.2 9 16 9z' fill='%23e53935' stroke='%23b71c1c' stroke-width='1'/><path d='M11 8c2 0 3 .5 5 .5s3.1-.5 5-.5c-2.1 1.3-3.1 2.7-5 3.2-2-.5-3-1.9-5-3.2z' fill='%234caf50' stroke='%232e7d32' stroke-width='1'/><circle cx='14' cy='16' r='1' fill='%23ffd54f'/><circle cx='18' cy='18' r='1' fill='%23ffd54f'/><circle cx='16' cy='21' r='1' fill='%23ffd54f'/><circle cx='19' cy='14' r='1' fill='%23ffd54f'/><circle cx='13' cy='19' r='1' fill='%23ffd54f'/></g></svg>") 6 2, pointer;
 }
 
-/* ====================
-   LIGHTBOX (click para ampliar)
-   ==================== */
-.card img{ cursor: pointer; }
-.lightbox{
-  position: fixed; inset: 0;
-  display: none; align-items: center; justify-content: center;
-  background: rgba(0,0,0,.6);
-  z-index: 9999;
-  backdrop-filter: blur(2px);
-  padding: 24px;
-}
-.lightbox.open{ display: flex; }
+/* Lightbox */
+.lightbox{ position: fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.6); z-index:9999; backdrop-filter:blur(2px); padding:24px; }
+.lightbox.open{ display:flex; }
 .lightbox figure{ margin:0; text-align:center; }
-.lightbox img{
-  max-width: min(92vw, 1100px);
-  max-height: 86vh;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.45);
-  border: 3px solid #7b5228;
-  background:#fffaf1;
-  animation: pop .18s ease-out;
-}
-@keyframes pop{ from{ transform: scale(.96); opacity: 0; } to{ transform: scale(1); opacity: 1; } }
-.lightbox .caption{
-  color: #fff; margin-top: 10px; text-align: center;
-  font-family: 'Cinzel', serif; font-size: 14px;
-  text-shadow: 0 1px 2px rgba(0,0,0,.5);
-}
+.lightbox img{ max-width:min(92vw,1100px); max-height:86vh; border-radius:14px; box-shadow:0 20px 40px rgba(0,0,0,.45); border:3px solid #7b5228; background:#fffaf1; animation:pop .18s ease-out; }
+@keyframes pop{ from{ transform:scale(.96); opacity:0 } to{ transform:scale(1); opacity:1 } }
+.lightbox .caption{ color:#fff; margin-top:10px; text-align:center; font-family:'Cinzel',serif; font-size:14px; text-shadow:0 1px 2px rgba(0,0,0,.5); }
 
-
-/* ====================
-   PAUSA GLOBAL DE ANIMACIONES
-   ==================== */
-/* Al agregar la clase .paused al <body>, detenemos TODAS las animaciones relevantes,
-   incluidas las de pseudo-elementos (::before/::after). */
+/* Pausa global */
 body.paused { animation-play-state: paused !important; }
 body.paused .banner::before,
 body.paused .banner::after,
-body.paused .section::before {
+body.paused .section::before,
+body.paused #isekai-sky .clouds,
+body.paused #isekai-sky .sun,
+body.paused #isekai-sky .moon,
+body.paused #isekai-sky .stars,
+body.paused #isekai-sky .lanterns,
+body.paused #isekai-sky .birds .bird{
   animation-play-state: paused !important;
 }
-
 
 /* ====================
    FONDO ISEKAI: CIELO + PUEBLO
    ==================== */
-#isekai-sky{
-  position: fixed; inset:0;
-  z-index: -1; pointer-events: none; overflow: hidden;
-}
-
-/* Capas base */
+#isekai-sky{ position: fixed; inset:0; z-index: -1; pointer-events: none; overflow: hidden; }
 #isekai-sky .layer{ position:absolute; inset:0; }
 
-/* Estrellas (muy sutiles, solo visibles en noche) */
+/* Estrellas de noche */
 #isekai-sky .stars{
   background:
     radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.9) 1px, transparent 2px),
@@ -245,19 +176,16 @@ body.paused .section::before {
     radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.8) 1px, transparent 2px),
     radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,.7) 1px, transparent 2px),
     radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,.75) 1px, transparent 2px);
-  opacity: .0;
+  opacity: 0; mix-blend-mode: screen;
   animation: starsFade 36s linear infinite;
-  mix-blend-mode: screen;
 }
 @keyframes starsFade{
-  0%{ opacity: 0; }
-  40%{ opacity: 0; }
-  60%{ opacity: .75; }
-  85%{ opacity: .85; }
+  0%,40%{ opacity: 0; }
+  60%,85%{ opacity: .85; }
   100%{ opacity: 0; }
 }
 
-/* Sol y luna en órbitas suaves */
+/* Sol y luna */
 #isekai-sky .sun, #isekai-sky .moon{
   width: 160px; height: 160px; border-radius: 50%; position: absolute;
   top: 20%; left: -10%; opacity:.9; filter: drop-shadow(0 8px 24px rgba(253, 216, 53, .35));
@@ -267,9 +195,8 @@ body.paused .section::before {
   animation: sunPath 36s linear infinite;
 }
 #isekai-sky .moon{
-  width: 110px; height: 110px;
+  width: 110px; height: 110px; top: 70%; left: 110%;
   background: radial-gradient(circle at 45% 45%, #ffffff, #cfd8dc 65%, #90a4ae 90%);
-  top: 70%; left: 110%;
   filter: drop-shadow(0 6px 18px rgba(207,216,220,.35));
   animation: moonPath 36s linear infinite;
 }
@@ -277,46 +204,102 @@ body.paused .section::before {
   0%{ transform: translate(8vw, 30vh); opacity: .95; }
   40%{ transform: translate(45vw, -6vh); opacity: 1; }
   60%{ transform: translate(60vw, 10vh); opacity: .85; }
-  100%{ transform: translate(110vw, 30vh); opacity: .0; }
+  100%{ transform: translate(110vw, 30vh); opacity: 0; }
 }
 @keyframes moonPath{
   0%{ transform: translate(-10vw, -10vh); opacity: 0; }
-  45%{ transform: translate(30vw, -2vh); opacity: 0; }
   60%{ transform: translate(45vw, -12vh); opacity: .9; }
   85%{ transform: translate(90vw, -4vh); opacity: .85; }
   100%{ transform: translate(120vw, 6vh); opacity: 0; }
 }
 
-/* Nubes (dos capas a distinta velocidad) */
+/* Nubes */
 #isekai-sky .clouds{
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='180' viewBox='0 0 600 180'><g fill='white' opacity='0.9'><path d='M90 110c-14 0-26-9-30-22-9-3-15-12-15-22 0-13 11-24 24-24 4 0 7 1 10 2 5-14 18-24 34-24 17 0 31 12 34 28 4-2 8-3 13-3 15 0 28 12 28 28 0 1 0 2 0 3 12 3 22 14 22 28 0 16-13 28-28 28H90z'/></g></svg>");
-  background-repeat: repeat-x;
-  background-size: 600px 180px;
-  background-position: 0 10%;
+  background-repeat: repeat-x; background-size: 600px 180px; background-position: 0 10%;
   opacity: .35;
 }
 #isekai-sky .clouds.slow{ animation: cloudsDrift 120s linear infinite; top: 8%; height: 40%; }
 #isekai-sky .clouds.fast{ animation: cloudsDrift 60s linear infinite; top: 18%; height: 46%; opacity:.28; }
 @keyframes cloudsDrift{ from{ background-position-x: 0; } to{ background-position-x: 600px; } }
 
-/* Montañas (silhouette) */
+/* Montañas y pueblo */
 #isekai-sky .mountains{
   bottom: 18vh; top: auto;
   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='300' viewBox='0 0 1600 300'><path d='M0 220 L150 160 L240 200 L360 120 L500 210 L640 150 L760 220 L900 130 L1040 210 L1160 160 L1280 210 L1420 140 L1600 220 L1600 300 L0 300 Z' fill='%23654426'/></svg>") repeat-x bottom/1600px 300px;
   opacity:.7;
 }
-
-/* Pueblo (casas de silueta) */
 #isekai-sky .village{
   bottom: 0; top: auto; height: 22vh;
   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='220' viewBox='0 0 1600 220'><g fill='%232b1b12'><rect x='0' y='160' width='1600' height='60'/><path d='M40 160 l40-40 40 40v20h-80z'/><path d='M160 160 l50-50 50 50v24h-100z'/><path d='M320 160 l36-36 36 36v22h-72z'/><path d='M440 160 l46-46 46 46v26h-92z'/><path d='M600 160 l40-40 40 40v24h-80z'/><path d='M740 160 l60-60 60 60v28h-120z'/><path d='M940 160 l40-40 40 40v24h-80z'/><path d='M1080 160 l46-46 46 46v26h-92z'/><path d='M1240 160 l36-36 36 36v22h-72z'/><path d='M1360 160 l50-50 50 50v24h-100z'/></g></svg>") repeat-x bottom/1600px 220px;
   filter: drop-shadow(0 -2px 6px rgba(0,0,0,.25));
 }
 
-/* Pausar también estas animaciones cuando body tiene .paused */
-body.paused #isekai-sky .clouds,
-body.paused #isekai-sky .sun,
-body.paused #isekai-sky .moon,
-body.paused #isekai-sky .stars{
-  animation-play-state: paused !important;
+/* Faroles/ventanas — aparecen de noche y titilan */
+@keyframes lanternNight{
+  0%,45%{ opacity: 0; }
+  60%,90%{ opacity: 1; }
+  100%{ opacity: 0; }
 }
+@keyframes lanternFlicker1{ 0%,100%{ filter:brightness(.9) } 50%{ filter:brightness(1.05) } }
+@keyframes lanternFlicker2{ 0%,100%{ filter:brightness(.85) } 40%{ filter:brightness(1.08) } 60%{ filter:brightness(.95) } }
+@keyframes lanternFlicker3{ 0%,100%{ filter:brightness(.9) } 30%{ filter:brightness(1.1) } 70%{ filter:brightness(.92) } }
+
+#isekai-sky .lanterns{
+  position:absolute; left:0; right:0; bottom:0; height:22vh;
+  mix-blend-mode: screen; pointer-events:none;
+}
+#isekai-sky .lanterns.l1{
+  background:
+    radial-gradient(3px 3px at 6% 70%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 12% 62%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 18% 74%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 28% 66%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 35% 78%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 44% 64%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 52% 76%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 60% 68%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 72% 74%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 82% 66%, #ffd772 80%, transparent 81%);
+  animation: lanternNight 36s linear infinite, lanternFlicker1 2.6s ease-in-out infinite;
+}
+#isekai-sky .lanterns.l2{
+  background:
+    radial-gradient(3px 3px at 9% 76%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 16% 68%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 24% 72%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 33% 64%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 41% 70%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 55% 62%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 67% 78%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 76% 64%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 88% 72%, #ffd772 80%, transparent 81%);
+  animation: lanternNight 36s linear infinite, lanternFlicker2 3s ease-in-out infinite;
+}
+#isekai-sky .lanterns.l3{
+  background:
+    radial-gradient(3px 3px at 5% 64%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 14% 74%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 22% 66%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 30% 78%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 47% 70%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 58% 66%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 63% 78%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 71% 64%, #ffd772 80%, transparent 81%),
+    radial-gradient(3px 3px at 95% 70%, #ffd772 80%, transparent 81%);
+  animation: lanternNight 36s linear infinite, lanternFlicker3 2.2s ease-in-out infinite;
+}
+
+/* Pajaritos al amanecer */
+@keyframes birdFlight{ from{ transform:translateX(-10vw) translateY(0) } to{ transform:translateX(120vw) translateY(-4vh) } }
+@keyframes birdsDawn{ 0%,8%{opacity:0} 10%,22%{opacity:1} 28%,100%{opacity:0} }
+@keyframes wingFlap{ 0%,100%{ transform-origin:50% 50%; } 50%{ transform-origin:50% 50%; } } /* placeholder to keep spec compliant */
+
+#isekai-sky .birds{ position:absolute; inset:0; pointer-events:none; }
+#isekai-sky .birds .bird{
+  position:absolute; left:-10vw; top:22vh; width:48px; height:32px; opacity:0;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='40' viewBox='0 0 64 40'><path d='M2 22c8-8 16-12 26-8 6 2 10 2 16-2 4-3 10-5 18-4-8 4-12 8-16 12-6 6-16 8-24 4-6-3-12-2-20 0 4-1 6-1 8-2z' fill='%232b1b12'/></svg>") no-repeat center/contain;
+  animation: birdFlight 36s linear infinite, birdsDawn 36s linear infinite;
+}
+#isekai-sky .birds .bird.b1{ top: 22vh; animation-delay: 0s, 0s; }
+#isekai-sky .birds .bird.b2{ top: 27vh; animation-delay: -6s, -6s; }

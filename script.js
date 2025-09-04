@@ -13,22 +13,24 @@ function setAmbientAnim(enabled){
   renderButton(enabled);
 }
 
-// Estado inicial guardado
+// Estado inicial (recuerda preferencia)
 const saved = localStorage.getItem(storageKey);
 const startEnabled = saved === null ? true : saved === '1';
 setAmbientAnim(startEnabled);
 renderButton(startEnabled);
 
+// Alternar al click
 btn.addEventListener('click', () =>{
-  const isPaused = document.body.classList.contains('paused'); // true => actualmente pausada
-  const nextEnabled = isPaused;  // si está pausada, la activamos; si no, la pausamos
+  const isPaused = document.body.classList.contains('paused'); // true => pausada
+  const nextEnabled = isPaused;  // si está pausada, activamos; si no, pausamos
   setAmbientAnim(nextEnabled);
   localStorage.setItem(storageKey, nextEnabled ? '1' : '0');
 });
-/* ====================
-   LIGHTBOX (click para ampliar imágenes)
-   ==================== */
-// Crear contenedor de lightbox una sola vez
+
+/* ================
+   LIGHTBOX
+   ================ */
+// Crear contenedor
 const lightbox = document.createElement('div');
 lightbox.className = 'lightbox';
 lightbox.innerHTML = `
@@ -45,24 +47,15 @@ function openLightbox(src, captionText){
   img.src = src;
   caption.textContent = captionText || '';
   lightbox.classList.add('open');
-  // Cerrar con ESC
-  const onKey = (e) => {
-    if(e.key === 'Escape'){ closeLightbox(); }
-  };
+
+  const onKey = (e) => { if(e.key === 'Escape'){ closeLightbox(); } };
   document.addEventListener('keydown', onKey, { once: true });
 }
-
-function closeLightbox(){
-  lightbox.classList.remove('open');
-}
-
-// Cerrar al hacer click fuera de la imagen
+function closeLightbox(){ lightbox.classList.remove('open'); }
 lightbox.addEventListener('click', (e) => {
   const clickedImg = e.target.tagName === 'IMG';
   if(!clickedImg){ closeLightbox(); }
 });
-
-// Delegación: escuchar clicks en todas las imágenes de tarjetas
 document.querySelectorAll('.card img').forEach(img => {
   img.addEventListener('click', () => {
     const title = img.closest('.card')?.querySelector('h3')?.textContent || img.alt || '';
