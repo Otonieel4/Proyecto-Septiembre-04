@@ -211,3 +211,112 @@ a, button, .btn{
   font-family: 'Cinzel', serif; font-size: 14px;
   text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
+
+
+/* ====================
+   PAUSA GLOBAL DE ANIMACIONES
+   ==================== */
+/* Al agregar la clase .paused al <body>, detenemos TODAS las animaciones relevantes,
+   incluidas las de pseudo-elementos (::before/::after). */
+body.paused { animation-play-state: paused !important; }
+body.paused .banner::before,
+body.paused .banner::after,
+body.paused .section::before {
+  animation-play-state: paused !important;
+}
+
+
+/* ====================
+   FONDO ISEKAI: CIELO + PUEBLO
+   ==================== */
+#isekai-sky{
+  position: fixed; inset:0;
+  z-index: -1; pointer-events: none; overflow: hidden;
+}
+
+/* Capas base */
+#isekai-sky .layer{ position:absolute; inset:0; }
+
+/* Estrellas (muy sutiles, solo visibles en noche) */
+#isekai-sky .stars{
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.9) 1px, transparent 2px),
+    radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.8) 1px, transparent 2px),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.8) 1px, transparent 2px),
+    radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,.7) 1px, transparent 2px),
+    radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,.75) 1px, transparent 2px);
+  opacity: .0;
+  animation: starsFade 36s linear infinite;
+  mix-blend-mode: screen;
+}
+@keyframes starsFade{
+  0%{ opacity: 0; }
+  40%{ opacity: 0; }
+  60%{ opacity: .75; }
+  85%{ opacity: .85; }
+  100%{ opacity: 0; }
+}
+
+/* Sol y luna en órbitas suaves */
+#isekai-sky .sun, #isekai-sky .moon{
+  width: 160px; height: 160px; border-radius: 50%; position: absolute;
+  top: 20%; left: -10%; opacity:.9; filter: drop-shadow(0 8px 24px rgba(253, 216, 53, .35));
+}
+#isekai-sky .sun{
+  background: radial-gradient(circle at 40% 40%, #fffde7, #ffee58 55%, #fbc02d 80%);
+  animation: sunPath 36s linear infinite;
+}
+#isekai-sky .moon{
+  width: 110px; height: 110px;
+  background: radial-gradient(circle at 45% 45%, #ffffff, #cfd8dc 65%, #90a4ae 90%);
+  top: 70%; left: 110%;
+  filter: drop-shadow(0 6px 18px rgba(207,216,220,.35));
+  animation: moonPath 36s linear infinite;
+}
+@keyframes sunPath{
+  0%{ transform: translate(8vw, 30vh); opacity: .95; }
+  40%{ transform: translate(45vw, -6vh); opacity: 1; }
+  60%{ transform: translate(60vw, 10vh); opacity: .85; }
+  100%{ transform: translate(110vw, 30vh); opacity: .0; }
+}
+@keyframes moonPath{
+  0%{ transform: translate(-10vw, -10vh); opacity: 0; }
+  45%{ transform: translate(30vw, -2vh); opacity: 0; }
+  60%{ transform: translate(45vw, -12vh); opacity: .9; }
+  85%{ transform: translate(90vw, -4vh); opacity: .85; }
+  100%{ transform: translate(120vw, 6vh); opacity: 0; }
+}
+
+/* Nubes (dos capas a distinta velocidad) */
+#isekai-sky .clouds{
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='180' viewBox='0 0 600 180'><g fill='white' opacity='0.9'><path d='M90 110c-14 0-26-9-30-22-9-3-15-12-15-22 0-13 11-24 24-24 4 0 7 1 10 2 5-14 18-24 34-24 17 0 31 12 34 28 4-2 8-3 13-3 15 0 28 12 28 28 0 1 0 2 0 3 12 3 22 14 22 28 0 16-13 28-28 28H90z'/></g></svg>");
+  background-repeat: repeat-x;
+  background-size: 600px 180px;
+  background-position: 0 10%;
+  opacity: .35;
+}
+#isekai-sky .clouds.slow{ animation: cloudsDrift 120s linear infinite; top: 8%; height: 40%; }
+#isekai-sky .clouds.fast{ animation: cloudsDrift 60s linear infinite; top: 18%; height: 46%; opacity:.28; }
+@keyframes cloudsDrift{ from{ background-position-x: 0; } to{ background-position-x: 600px; } }
+
+/* Montañas (silhouette) */
+#isekai-sky .mountains{
+  bottom: 18vh; top: auto;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='300' viewBox='0 0 1600 300'><path d='M0 220 L150 160 L240 200 L360 120 L500 210 L640 150 L760 220 L900 130 L1040 210 L1160 160 L1280 210 L1420 140 L1600 220 L1600 300 L0 300 Z' fill='%23654426'/></svg>") repeat-x bottom/1600px 300px;
+  opacity:.7;
+}
+
+/* Pueblo (casas de silueta) */
+#isekai-sky .village{
+  bottom: 0; top: auto; height: 22vh;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='220' viewBox='0 0 1600 220'><g fill='%232b1b12'><rect x='0' y='160' width='1600' height='60'/><path d='M40 160 l40-40 40 40v20h-80z'/><path d='M160 160 l50-50 50 50v24h-100z'/><path d='M320 160 l36-36 36 36v22h-72z'/><path d='M440 160 l46-46 46 46v26h-92z'/><path d='M600 160 l40-40 40 40v24h-80z'/><path d='M740 160 l60-60 60 60v28h-120z'/><path d='M940 160 l40-40 40 40v24h-80z'/><path d='M1080 160 l46-46 46 46v26h-92z'/><path d='M1240 160 l36-36 36 36v22h-72z'/><path d='M1360 160 l50-50 50 50v24h-100z'/></g></svg>") repeat-x bottom/1600px 220px;
+  filter: drop-shadow(0 -2px 6px rgba(0,0,0,.25));
+}
+
+/* Pausar también estas animaciones cuando body tiene .paused */
+body.paused #isekai-sky .clouds,
+body.paused #isekai-sky .sun,
+body.paused #isekai-sky .moon,
+body.paused #isekai-sky .stars{
+  animation-play-state: paused !important;
+}

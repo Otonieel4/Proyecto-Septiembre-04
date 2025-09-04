@@ -20,12 +20,11 @@ setAmbientAnim(startEnabled);
 renderButton(startEnabled);
 
 btn.addEventListener('click', () =>{
-  const isRunning = document.body.style.animationPlayState !== 'paused';
-  const next = !isRunning;
-  setAmbientAnim(next);
-  localStorage.setItem(storageKey, next ? '1' : '0');
+  const isPaused = document.body.classList.contains('paused'); // true => actualmente pausada
+  const nextEnabled = isPaused;  // si está pausada, la activamos; si no, la pausamos
+  setAmbientAnim(nextEnabled);
+  localStorage.setItem(storageKey, nextEnabled ? '1' : '0');
 });
-
 /* ====================
    LIGHTBOX (click para ampliar imágenes)
    ==================== */
